@@ -31,9 +31,13 @@ const ApiData: React.FC<ApiDataProps> = ({ category }) => {
             } else {
               setIsError('Invalid data format received from the API.');
             }
-          } catch (error) {
-            setIsError(String(error));
-          }
+          } catch (error: any) {
+  if (typeof error === 'string') {
+    setIsError(error);
+  } else {
+    
+    setIsError(String(error));
+  }
     };
 
     fetchData();
